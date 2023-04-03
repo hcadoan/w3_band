@@ -4,6 +4,12 @@
     box-sizing: border-box;
 }
 
+html {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 62.5%;
+    scroll-behavior: smooth;
+}
+
 
 /* 
 - vi tri
@@ -11,18 +17,83 @@
 - mau sac 
 - kieu dang */
 
+
+/* css dung chung */
+
 .text-white {
     color: #fff !important;
-}
-
-html {
-    font-family: Arial, Helvetica, sans-serif;
-    font-size: 62.5%;
 }
 
 .clear {
     clear: both;
 }
+
+.row {
+    margin-left: -8px;
+    margin-right: -8px;
+}
+
+.row::after {
+    content: "";
+    display: block;
+    clear: both;
+}
+
+.col {
+    float: left;
+    padding-left: 8px;
+    padding-right: 8px;
+}
+
+.col-third {
+    width: calc(100%/3);
+}
+
+.col-half {
+    width: 50%;
+}
+
+.col-full {
+    width: 100%;
+}
+
+.text-center {
+    text-align: center;
+}
+
+.mt-8 {
+    margin-top: 8px;
+}
+
+.mt-16 {
+    margin-top: 16px;
+}
+
+.mb-16 {
+    margin-bottom: 16px;
+}
+
+.pull-right {
+    float: right;
+}
+
+.btn {
+    background: #000;
+    color: #fff;
+    padding: 8px 16px;
+    font-size: 1.5rem;
+    text-decoration: none;
+    border: none;
+    cursor: pointer;
+}
+
+.btn:hover {
+    background: #ccc;
+    color: #000;
+}
+
+
+/* main */
 
 #main {}
 
@@ -95,6 +166,14 @@ html {
     font-size: 1.4rem;
 }
 
+#header .mobile-menu {
+    position: absolute;
+    top: 0;
+    right: 0;
+    display: none;
+}
+
+#header .mobile-menu,
 #header .search-btn {
     float: right;
     padding: 0px 24px;
@@ -105,6 +184,15 @@ html {
     cursor: pointer;
 }
 
+#header .mobile-menu:hover {
+    background: #ccc;
+}
+
+#header .mobile-menu:hover .menu-icon {
+    color: #000;
+}
+
+#header .menu-icon,
 #header .search-icon {
     color: #fff;
     font-size: 1.5rem;
@@ -123,6 +211,7 @@ html {
     bottom: 48px;
     width: 100%;
     text-align: center;
+    text-shadow: 0 0 1.5px #000;
 }
 
 #slider .text-heading {
@@ -137,15 +226,16 @@ html {
     margin-top: 25px;
 }
 
-#content {
-    height: 1000px;
-}
+#content {}
 
 #content .content-section {
     width: 800px;
+    max-width: 100%;
     margin-left: auto;
     margin-right: auto;
-    padding: 64px 0;
+    padding: 64px 0 112px;
+    padding-left: 16px;
+    padding-right: 16px;
 }
 
 #content .section-heading {
@@ -172,12 +262,6 @@ html {
 
 #content .member-list {
     margin-top: 47px;
-    text-align: center;
-}
-
-#content .member-item {
-    float: left;
-    width: calc(100%/3);
 }
 
 #content .member-list .name {
@@ -231,14 +315,9 @@ html {
 }
 
 .ticket-list-item {
-    margin: 32px -8px 0;
+    margin-top: 16px;
+    margin-bottom: 0;
     line-height: 22.5px;
-}
-
-.ticket-list-item .ticket {
-    float: left;
-    width: calc(100%/3);
-    padding: 0px 8px;
 }
 
 .ticket-list-item .ticket-img {
@@ -270,17 +349,157 @@ html {
     margin: 15px 0;
 }
 
-.buy-ticket-btn {
-    background: #000;
-    color: #fff;
-    padding: 8px 16px;
-    font-size: 1.5rem;
-    text-decoration: none;
+.modal {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: rgba(0, 0, 0, 0.4);
+    align-items: center;
+    justify-content: center;
+    display: none;
 }
 
-.buy-ticket-btn:hover {
+.modal.open {
+    display: flex;
+}
+
+.modal-container {
+    background: #fff;
+    width: 900px;
+    max-width: calc(100% - 32px);
+    min-height: 200px;
+    position: relative;
+    animation: modalFaceIn ease .5s;
+}
+
+.model-header {
+    background: #009688;
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 129px;
+    font-size: 3rem;
+    letter-spacing: 4px;
+}
+
+.model-header .icon-bag {
+    margin-right: 16px;
+}
+
+.modal-close {
+    position: absolute;
+    right: 0;
+    top: 0;
+    padding: 16px;
+    color: #fff;
+    font-size: 1.4rem;
+    cursor: pointer;
+}
+
+.modal-close:hover {
     background: #ccc;
     color: #000;
 }
 
-#footer {}
+.modal-body {
+    padding: 16px;
+    line-height: 22.5px;
+}
+
+.modal-label {
+    display: block;
+    font-size: 1.5rem;
+}
+
+.modal-input {
+    padding: 8px;
+    border: 1px solid #ccc;
+    margin: 15px 0;
+    font-size: 1.5rem;
+    width: 100%;
+    line-height: 22.5px;
+}
+
+.modal #pay-btn {
+    width: 100%;
+    height: 55px;
+    background: #009688;
+    text-transform: uppercase;
+    color: #fff;
+    font-size: 1.5rem;
+    border: none;
+    cursor: pointer;
+}
+
+.modal #pay-btn:hover {
+    background: #ccc;
+    color: #000;
+}
+
+.modal-footer {
+    font-size: 1.5rem;
+    padding: 16px;
+    float: right;
+}
+
+.modal-footer .help {
+    color: #2196f3;
+}
+
+.contact-content {
+    margin-top: 48px;
+}
+
+.contact-info {
+    font-size: 1.8rem;
+    line-height: 1.5;
+}
+
+.contact-info i {
+    margin-right: 16px;
+}
+
+.contact-form .input {
+    font-size: 1.5rem;
+    padding: 8px;
+    width: 100%;
+    border: 1px solid #ccc;
+    line-height: 22.5px;
+}
+
+.map-section {
+    width: 100%;
+}
+
+#footer {
+    padding: 64px 16px;
+    text-align: center;
+    color: #757575;
+}
+
+#footer .social-list {
+    font-size: 24px;
+}
+
+#footer .social-icon {
+    text-decoration: none;
+    color: #757575;
+}
+
+#footer .social-icon:hover {
+    opacity: 0.5;
+}
+
+@keyframes modalFaceIn {
+    from {
+        transform: translateY(-150px);
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
